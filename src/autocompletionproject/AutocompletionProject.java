@@ -40,6 +40,7 @@ public class AutocompletionProject {
             }
             if ( "y".equals(str) || "Y".equals(str) ){
                 f = 0;
+                strComplite += ",";
             } else{
                 f = 1;
             }
@@ -50,6 +51,17 @@ public class AutocompletionProject {
             String[] dictionary;
             String delimeter = "[\\p{P}]"; 
             dictionary = strWithoutSpace.split(delimeter);                  //Разделение на слова
+            int dictionarySize = dictionary.length;
+            for (int i = 0; i < dictionarySize; i ++){
+                if (dictionary[i].equals("")){
+                    for (int j = i; j < (dictionarySize - 1); j ++){
+                        dictionary[j] = dictionary[j+1];
+                    } 
+                    dictionarySize = dictionarySize - 1;
+                    i --;
+                }
+                
+            }
             do{
                 System.out.println("Enter the prefix ");
                 try {
@@ -59,7 +71,7 @@ public class AutocompletionProject {
                 } 
                 String prefix = str.replaceAll("\\s+","");
                 f = 0;
-                for (int i = 0; i < dictionary.length; i ++){
+                for (int i = 0; i < dictionarySize; i ++){
                     if ( dictionary[i].length() >= prefix.length() ){
                         if ( prefix.equals( dictionary[i].substring( 0, prefix.length() ) ) ){
                             System.out.println(dictionary[i]);
