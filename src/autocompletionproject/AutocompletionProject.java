@@ -46,9 +46,9 @@ public class AutocompletionProject {
         }
         
         if (strComplite != null){
-            String strWithoutSpace = strComplite.replaceAll("\\s+",""); //Удаление пробелов 
+            String strWithoutSpace = strComplite.replaceAll("\\s+","");   //Удаление пробелов 
             String[] dictionary;
-            String delimeter = ","; 
+            String delimeter = "[\\p{P}]"; 
             dictionary = strWithoutSpace.split(delimeter);                  //Разделение на слова
             do{
                 System.out.println("Enter the prefix ");
